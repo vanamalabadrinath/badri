@@ -1,0 +1,52 @@
+#include <stdio.h>
+
+int main() {
+    int arr[10] = {5, 8, 3, 2, 7, 1, 9, 4, 6, 10};
+    int n = 10;
+    int i, j, temp;
+    int largest = arr[0];
+    int secondLargest = arr[0];
+    int smallest = arr[0];
+    int secondSmallest = arr[0];
+    int sum = 0;
+    float avg = 0;
+
+    for (i = 0; i < n; i++) {
+        for (j = i + 1; j < n; j++) {
+            if (arr[i] < arr[j]) {
+                temp = arr[i];
+                arr[i] = arr[j];
+                arr[j] = temp;
+            }
+        }
+    }
+
+    for (i = 0; i < n; i++) {
+        if (arr[i] > largest) {
+            secondLargest = largest;
+            largest = arr[i];
+        } else if (arr[i] > secondLargest && arr[i] != largest) {
+            secondLargest = arr[i];
+        }
+        if (arr[i] < smallest) {
+            secondSmallest = smallest;
+            smallest = arr[i];
+        } else if (arr[i] < secondSmallest && arr[i] != smallest) {
+            secondSmallest = arr[i];
+        }
+    }
+    
+    sum = secondLargest + secondSmallest;
+    avg = (float)sum / 2;
+
+    for (i = 0; i < n; i++) {
+        if (arr[i] == avg) {
+            printf("The average %.2f is present in the array.\n", avg);
+            return 0;
+        }
+    }
+
+    printf("The average %.2f is not present in the array.\n", avg);
+
+    return 0;
+}
