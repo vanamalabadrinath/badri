@@ -1,0 +1,23 @@
+#include <stdio.h>
+
+int main() {
+    int array[] = {10, 15, 90, 200, 110};
+    int n = sizeof(array) / sizeof(array[0]);
+    int i, maxDiff = 0;
+
+    int maxElement = array[n-1];
+    for (i = n-2; i >= 0; i--) {
+        if (array[i] > maxElement) {
+            maxElement = array[i];
+        } else {
+            int diff = maxElement - array[i];
+            if (diff > maxDiff) {
+                maxDiff = diff;
+            }
+        }
+    }
+
+    printf("Maximum difference is %d\n", maxDiff);
+
+    return 0;
+}
